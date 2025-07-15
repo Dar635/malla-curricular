@@ -79,12 +79,34 @@ for (let semestre = 1; semestre <= 9; semestre++) {
   const div = document.createElement("div");
   div.className = "semestre";
   div.innerHTML = `<h2>Semestre ${semestre}</h2>`;
-  materiasPorSemestre[semestre].forEach(m => {
-    const matDiv = document.createElement("div");
-    matDiv.className = "materia";
-    matDiv.innerHTML = `<strong>${m.sigla}</strong>: ${m.nombre}<br><em>Pre: ${m.prereq}</em>`;
-    div.appendChild(matDiv);
+ materiasPorSemestre[semestre].forEach(m => {
+  const matDiv = document.createElement("div");
+  matDiv.className = "materia";
+  matDiv.innerHTML = `<strong>${m.sigla}</strong>: ${m.nombre}`;
+  
+  // Crear un elemento oculto con los pre-requisitos
+  const info = document.createElement("div");
+  info.style.display = "none";
+  info.style.fontSize = "0.9em";
+  info.style.color = "#555";
+  info.style.marginTop = "4px";
+  info.innerText = `Pre-requisitos: ${m.prereq}`;
+  matDiv.appendChild(info);
+  
+  // Cuando se haga clic en la materia:
+  matDiv.addEventListener("click", () => {
+    // Alternar clase 'completed' para tachar
+    matDiv.classList.toggle("completed");
+    
+    // Alternar visibilidad de la info extra
+    if (info.style.display === "none") {
+      info.style.display = "block";
+    } else {
+      info.style.display = "none";
+    }
   });
-  contenedor.appendChild(div);
-}
+
+  div.appendChild(matDiv);
+});
+
 

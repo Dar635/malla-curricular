@@ -34,4 +34,18 @@ h1 {
   border-left: 4px solid #007BFF;
   background: #f9f9f9;
 }
+.materia.completed {
+  text-decoration: line-through;
+  color: gray;
+  opacity: 0.6;
+}
+
+.materia {
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.materia:hover {
+  background-color: #d0e7ff;
+}
 
